@@ -103,7 +103,6 @@ class Test extends Component {
                     <div>
                         스톱워치를 만들어보았습니다
                         라이프 사이클 개념을 잡기 위해서 진행되는 과정도 확인해 보았습니다
-                        렌더링 오류 처리(오류발생 후 대체 ui / 오류정보 기록)도 해보았습니다
                     </div>
                     <div>
                         <span>{this.state.sec}</span><span>초</span>
