@@ -5,7 +5,7 @@ class Test extends Component {
     render() {
         return (
             <div>
-             dfkdfkdkf
+             안녕하세요
             </div>
         );
     }
