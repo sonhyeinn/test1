@@ -23,8 +23,22 @@ class Test extends Component {
     constructor(props){
         //생성자 내부에서 다른 함수 호출 시에 오류 방지 (부모자)
         super(props);
+        //오류확인 값 없음
+        //this.state = { hasError: false };
         console.log("constructor 실행");
     }
+    //오류값이 있을경우 작성한 ui 를 도출시킨다
+    /*static getDerivedStateFromError(error) {
+        return { hasError: true };
+    }*/
+    //오류값이 있을경우 오류와 정보를 도출 시킨다
+    //로깅 오류시에 보통 사용
+    /*componentDidCatch(error, info) {
+        logComponentStackToMyService(info.componentStack);
+    }
+
+     */
+
     //1-2.마운팅 발생 직전 호출
     componentWillMount() {
         console.log("componentWillMount 실행");
@@ -39,6 +53,7 @@ class Test extends Component {
             console.log('렌더링 된 값이 없습니다');
             return false;
         }
+        console.log(nextState.sec);
         return true;
     }
     //3.마운트 됨
@@ -56,6 +71,7 @@ class Test extends Component {
     componentWillUnmount() {
         console.log("componentWillUnmount 실행");
     }
+
     //시작 버튼 클릭
     startbtn = () => {
         //시작 버튼 클릭시 타이머가 작동되고 값을 할당하는 반복함수를 실행한다 (limit 1000초)
@@ -75,24 +91,32 @@ class Test extends Component {
     };
 
     render() {
-        return (
-            <>
+        if (this.state.hasError) {
+            return (
                 <div>
-                    스톱워치를 만들어보았습니다
-                    라이프 사이클 개념을 잡기 위해서 진행되는 과정도 확인해 보았습니다
-                    렌더링 오류 처리도 해보았습니다
+                    오류가 확인 되었습니다.
                 </div>
-                <div>
-                    <span>{this.state.sec}</span><span>초</span>
-                    {this.state.buttonState? (
-                        <button onClick={this.startbtn}>시작</button>
-                        ):(
-                        <button onClick={this.stopbtn}>정지</button>
+            )
+        } else {
+            return (
+                <>
+                    <div>
+                        스톱워치를 만들어보았습니다
+                        라이프 사이클 개념을 잡기 위해서 진행되는 과정도 확인해 보았습니다
+                        렌더링 오류 처리(오류발생 후 대체 ui / 오류정보 기록)도 해보았습니다
+                    </div>
+                    <div>
+                        <span>{this.state.sec}</span><span>초</span>
+                        {this.state.buttonState ? (
+                            <button onClick={this.startbtn}>시작</button>
+                        ) : (
+                            <button onClick={this.stopbtn}>정지</button>
                         )
-                    }
-                </div>
-            </>
-        );
+                        }
+                    </div>
+                </>
+            );
+        }
     }
 }
 export default Test;
