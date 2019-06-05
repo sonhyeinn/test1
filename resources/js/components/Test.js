@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-
+import Apple from "./Apple";
+//클래스
 class Test extends Component {
-    //클래스
     state = {
         //기본초
         sec : 0,
@@ -50,7 +50,7 @@ class Test extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         console.log("shouldComponentUpdate 실행");
         if(nextState.sec % 2 === 0){
-            console.log('렌더링 된 값이 없습니다');
+            console.log('짝수 시간일 경우 렌더링 해서 보여주지 않습니다');
             return false;
         }
         console.log(nextState.sec);
@@ -74,12 +74,13 @@ class Test extends Component {
 
     //시작 버튼 클릭
     startbtn = () => {
-        //시작 버튼 클릭시 타이머가 작동되고 값을 할당하는 반복함수를 실행한다 (limit 1000초)
+        //시작 버튼 클릭시 타이머가 작동되고 값을 할당하는 반복함수를 실행한다
         this.setState({
            sec : 0,
            buttonState:false,
            intervalFunction : setInterval(this.stoptimer, 1000)
         });
+        setTimeout(this.stoptimer === 1000,console.log('종료되었습니다'))
     };
     //정지 버튼 클릭
     stopbtn = () => {
@@ -112,6 +113,9 @@ class Test extends Component {
                             <button onClick={this.stopbtn}>정지</button>
                         )
                         }
+                    </div>
+                    <div>
+                        {/*<Apple item="gggg" />*/}
                     </div>
                 </>
             );
