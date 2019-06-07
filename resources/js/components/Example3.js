@@ -14,6 +14,7 @@ export default class Example3  extends Component {
             <>
                 <div>
                     <ul>
+                        <li>배열 함수 사용</li>
                         <li>{cardList}</li>
                     </ul>
                     <ul>
