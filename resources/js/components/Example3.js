@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 export default class Example3  extends Component {
 
     state = {
-        cards : ['A','clover','heart']
+        //배열에 데이터
+        cards : ['A','clover','heart'],
     };
 
     render() {
@@ -20,6 +21,9 @@ export default class Example3  extends Component {
                     <ul>
                         <li>{this.props.data3}</li>
                     </ul>
+                </div>
+                <div>
+
                 </div>
             </>
         );
